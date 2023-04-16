@@ -9,7 +9,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import arviz as az
 import pandas
-import pymc.sampling_jax
 from lorenz import create_data_lorenz
 from non_linear import create_data_nonlinear
 from two_compartment import create_data_twocompart
