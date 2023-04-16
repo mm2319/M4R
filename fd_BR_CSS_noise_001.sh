@@ -18,7 +18,7 @@
 #PBS -V
 
 # define job name
-#PBS -N Spline
+#PBS -N FD
 
 # main commands here
 

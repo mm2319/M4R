@@ -19,7 +19,7 @@ def loss_f(x, u):
     return tf.reduce_mean(tf.square(tf.subtract(x , u)))
 
 def train_lorenz(model, epoch, T, Y):
-    optimizer = SGD(learning_rate=1.e-3)
+    optimizer = Adam(learning_rate=1.e-5, beta_2=0.99)
     for epoch in range(epoch):
         print("start of epoch %d" %(epoch,))
         for i in range(len(Y[:,0])):
