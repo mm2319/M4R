@@ -11,7 +11,7 @@ def Bayesian_regression_SS_Selction(Y_1, X_1, size_fun_lib, further_prior=True):
     Y1 = np.array(Y_1)
     X_1 = np.array(X_1)
     with basic_model:
-        p_1 = pm.Uniform('p_1', 0.3, 0.5, shape = size_fun_lib)
+        p_1 = pm.Uniform('p_1', 0., 1., shape = size_fun_lib)
         sigma = pm.Gamma('sigma',1.,0.1,shape=1)
         z_1  = pm.Laplace('z_1', mu=0, b=1, shape=size_fun_lib)
         pn_1 = pm.Bernoulli('pn_1', p_1, shape=size_fun_lib)
