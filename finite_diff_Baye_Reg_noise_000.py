@@ -9,7 +9,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import arviz as az
 import pandas
-import pymc.sampling_jax
 import derivative
 from lorenz import create_data_lorenz
 from non_linear import create_data_nonlinear

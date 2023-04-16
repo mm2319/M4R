@@ -6,7 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import arviz as az
 import pandas
-import pymc.sampling_jax
 
 def conti_spike_slab(shape):
     mu_hat = 0
