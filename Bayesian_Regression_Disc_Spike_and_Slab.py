@@ -1,5 +1,5 @@
 import numpy as np
-import pymc3 as pm
+import pymc as pm
 import numpy as np
 import arviz as az
 import pandas
@@ -17,7 +17,7 @@ def Bayesian_regression_disc_spike_slab(Y_1, X_1, size_fun_lib, further_prior=Tr
         mu_1 = pm.Deterministic(name="mu_1", var = pm.math.matrix_dot(X_1,beta_1))
         Y_obs_1 = pm.Normal('Y_obs_1', mu=mu_1, sd = sigma, observed = Y1)
     with basic_model:
-        trace_rh = pm.sample(4000, tune=1000, cores=5, random_seed=1, nuts={'target_accept':0.9})
+        trace_rh = pm.sample(4000, tune=1000, cores=1, random_seed=1, nuts={'target_accept':0.9}, init="adapt_diag")
     with basic_model:
         start = pm.find_MAP()
         start['sigma'] = trace_rh['sigma'].mean(axis=0)
