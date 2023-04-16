@@ -12,7 +12,7 @@ def Bayesian_regression_SS_Selction(Y_1, X_1, size_fun_lib, further_prior=True):
     X_1 = np.array(X_1)
     with basic_model:
         p_1 = pm.Uniform('p_1', 0, 1, shape = size_fun_lib)
-        sigma = pm.Gamma('sigma', 1,  0.1,shape=1)
+        sigma = pm.Gamma('sigma',1.,0.1,shape=1)
         z_1  = pm.Laplace('z_1', mu=0, b=1, shape=size_fun_lib)     
         p_1 = pm.math.switch(p_1 > 0.5, 1, 0)   
         pn_1 = pm.Bernoulli('pn_1', p_1, shape=size_fun_lib)
@@ -20,12 +20,6 @@ def Bayesian_regression_SS_Selction(Y_1, X_1, size_fun_lib, further_prior=True):
         mu_1 = pm.Deterministic(name="mu_1", var = pm.math.matrix_dot(X_1,beta_1))
         Y_obs_1 = pm.Normal('Y_obs_1', mu=mu_1, sigma= sigma, observed = Y1)
     with basic_model:   
+        start = pm.find_MAP()
         trace_rh = pm.sample(4000, tune=1000, cores=1, random_seed=1, nuts={'target_accept':0.9}, init="adapt_diag")
-    with basic_model:
-        start = {}
-        start['p_1'] = trace_rh['p_1'].mean(axis=0)
-        start['sigma'] = trace_rh['sigma'].mean(axis=0)
-        start['mu_1'] = trace_rh['mu_1'].mean(axis=0)
-        start['p_1'] = trace_rh['p_1'].mean(axis=0)
-        start['z_1'] = trace_rh['z_1'].mean(axis=0)
     return start, trace_rh
