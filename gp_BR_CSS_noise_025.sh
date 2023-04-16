@@ -24,6 +24,6 @@
 
 module load anaconda3/personal
 
-cd /rds/general/user/mm2319/home/final_script/
+cd /rds/general/user/mm2319/home/M4R/
 
 python3 Gaussian_Der_Baye_Reg_CSS_noise_025.py
