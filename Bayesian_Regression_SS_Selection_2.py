@@ -20,5 +20,5 @@ def Bayesian_regression_SS_Selction(Y_1, X_1, size_fun_lib, further_prior=True):
         Y_obs_1 = pm.Normal('Y_obs_1', mu=mu_1, sigma= sigma, observed = Y1)
     with basic_model:   
         start = pm.find_MAP()
-        trace_rh = pm.sample(2000, tune=1000, cores=1, random_seed=1, nuts={'target_accept':0.9})
+        trace_rh = pm.sample(4000, tune=1000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     return start, trace_rh
