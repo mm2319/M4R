@@ -20,8 +20,8 @@ def Bayesian_regression_disc_spike_slab(Y_1, X_1, size_fun_lib, further_prior=Tr
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
         start = {}
-        start['beta_1'] = trace_rh.posterior['beta_1']
-        start['mu_1'] = trace_rh.posterior['mu_1']
-        start['pn_1'] = trace_rh.posterior['pn_1']
-        start['z_1'] = trace_rh.posterior['z_1']
+        start['beta_1'] = trace_rh.posterior['beta_1'][0,-100:]
+        start['mu_1'] = trace_rh.posterior['mu_1'][0,-100:]
+        start['pn_1'] = trace_rh.posterior['pn_1'][0,-100:]
+        start['z_1'] = trace_rh.posterior['z_1'][0,-100:]
     return start, trace_rh
