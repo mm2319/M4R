@@ -30,9 +30,9 @@ def Bayesian_regression_conti_spike_slab(Y_1, X_1, size_fun_lib):
     with basic_model:
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
-        start = az.extract(trace_rh, num_samples=100)
-        start['mu_1'] = start['mu_1'].mean(axis=0)
-        start['beta_1'] = start['beta_1'].mean(axis=0)
-        start['spike'] = start['spike'].mean(axis=0)
-        start['z_1'] = start['z_1'].mean(axis=0)
+        start = {}
+        start['sigma'] = trace_rh.posterior['sigma']
+        start['mu_1'] = trace_rh.posterior['mu_1']
+        start['spike'] = trace_rh.posterior['spike']
+        start['z_1'] = trace_rh.posterior['z_1']
     return start, trace_rh

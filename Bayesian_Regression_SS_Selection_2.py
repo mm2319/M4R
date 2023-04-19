@@ -21,9 +21,10 @@ def Bayesian_regression_SS_Selction(Y_1, X_1, size_fun_lib, further_prior=True):
     with basic_model:  
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
-        start = az.extract(trace_rh, num_samples=100)
-        start['mu_1'] = start['mu_1'].mean(axis=0)
-        start['beta_1'] = start['beta_1'].mean(axis=0)
-        start['spike'] = start['spike'].mean(axis=0)
-        start['z_1'] = start['z_1'].mean(axis=0)
+        start = {}
+        start['beta_1'] = trace_rh.posterior['beta_1']
+        start['p_1'] = trace_rh.posterior['p_1']
+        start['mu_1'] = trace_rh.posterior['mu_1']
+        start['pn_1'] = trace_rh.posterior['pn_1']
+        start['z_1'] = trace_rh.posterior['z_1']
     return start, trace_rh
