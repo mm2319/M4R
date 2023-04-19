@@ -21,7 +21,7 @@ def Bayesian_regression_SS_Selction(Y_1, X_1, size_fun_lib, further_prior=True):
     with basic_model:  
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
-        start = {}
+        start = {'mu_1':0,'beta_1':0,'pn_1':0,'z_1':0,"p_1":0}
         
         start['mu_1'] = trace_rh['mu_1'].mean(axis=0)
         start['p_1'] = trace_rh['p_1'].mean(axis=0)
