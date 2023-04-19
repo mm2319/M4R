@@ -28,6 +28,12 @@ def Bayesian_regression_conti_spike_slab(Y_1, X_1, size_fun_lib):
         mu_1 = pm.Deterministic(name="mu_1", var = pm.math.matrix_dot(X_1,beta_1))
         Y_obs_1 = pm.Normal('Y_obs_1', mu=mu_1, sigma = sigma, observed = Y1)
     with basic_model:
-        start = pm.find_MAP() 
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
+    with basic_model:
+        start = pm.find_MAP()
+        start['sigma'] = trace_rh['sigma'].mean(axis=0)
+        start['mu_1'] = trace_rh['mu_1'].mean(axis=0)
+        start['beta_1'] = trace_rh['beta_1'].mean(axis=0)
+        start['spike'] = trace_rh['spike'].mean(axis=0)
+        start['z_1'] = trace_rh['z_1'].mean(axis=0)
     return start, trace_rh
