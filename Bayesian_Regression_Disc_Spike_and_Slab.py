@@ -17,11 +17,11 @@ def Bayesian_regression_disc_spike_slab(Y_1, X_1, size_fun_lib, further_prior=Tr
         mu_1 = pm.Deterministic(name="mu_1", var = pm.math.matrix_dot(X_1,beta_1))
         Y_obs_1 = pm.Normal('Y_obs_1', mu=mu_1, sigma = sigma, observed = Y1)
     with basic_model:
-        trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
+        trace_rh = pm.sample(1000, tune=6000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
         start = {}
-        start['beta_1'] = trace_rh.posterior['beta_1'][0,-100:]
-        start['mu_1'] = trace_rh.posterior['mu_1'][0,-100:]
-        start['pn_1'] = trace_rh.posterior['pn_1'][0,-100:]
-        start['z_1'] = trace_rh.posterior['z_1'][0,-100:]
+        start['beta_1'] = trace_rh.posterior['beta_1'][:,-1:]
+        start['mu_1'] = trace_rh.posterior['mu_1'][:,-1:]
+        start['pn_1'] = trace_rh.posterior['pn_1'][:,-1:]
+        start['z_1'] = trace_rh.posterior['z_1'][:,-1:]
     return start, trace_rh
