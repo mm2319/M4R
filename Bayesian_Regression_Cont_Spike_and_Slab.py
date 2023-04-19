@@ -30,8 +30,7 @@ def Bayesian_regression_conti_spike_slab(Y_1, X_1, size_fun_lib):
     with basic_model:
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
-        start = pm.find_MAP()
-        
+        start = {}
         start['mu_1'] = trace_rh['mu_1'].mean(axis=0)
         start['beta_1'] = trace_rh['beta_1'].mean(axis=0)
         start['spike'] = trace_rh['spike'].mean(axis=0)

@@ -19,7 +19,7 @@ def Bayesian_regression_disc_spike_slab(Y_1, X_1, size_fun_lib, further_prior=Tr
     with basic_model:
         trace_rh = pm.sample(1000, tune=4000, cores=1, random_seed=1, nuts={'target_accept':0.9})
     with basic_model:
-        start = pm.find_MAP()
+        start = {}
        
         start['mu_1'] = trace_rh['mu_1'].mean(axis=0)
         start['pn_1'] = trace_rh['pn_1'].mean(axis=0)
