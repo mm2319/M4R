@@ -17,13 +17,20 @@ from Derivative_Data_Two_Compart import obtain_train_data_Two_compart
 from Bayesian_Regression_Disc_Spike_and_Slab import Bayesian_regression_disc_spike_slab
 from Bayesian_Regression_Cont_Spike_and_Slab import Bayesian_regression_conti_spike_slab
 from Bayesian_Regression_SS_Selection_2 import Bayesian_regression_SS_Selction
+network_twocompart = FeedForwardNetwork(2)
+network_nonlinear = FeedForwardNetwork(2)
+network_lorenz = FeedForwardNetwork(3)
+T, Y = create_data_lorenz(p=0.01)
+train_lorenz(network_lorenz, 4000,T=T,Y=Y)
+T, Y = create_data_nonlinear(p=0.01)
+train_nonlinear(network_nonlinear,  4000,T=T,Y=Y)
+T, Y = create_data_twocompart(p=0.01)
+train_twocompart(network_twocompart,  4000,T=T,Y=Y)
 print("$"*25)
 print("for the continuous spike and slab prior")
 print("$"*25)
 T, Y = create_data_twocompart(p=0.01)
-model = FeedForwardNetwork(2)
-model.load_weights('./NN_twocompart_checkpoints_0.01/my_checkpoint')
-x_1_train, y_1_train, y_2_train  = obtain_twocompart_data(model, T)
+x_1_train, y_1_train, y_2_train  = obtain_twocompart_data(network_twocompart, T)
 
 start_1,trace_1 = Bayesian_regression_conti_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_conti_spike_slab(y_2_train,x_1_train,np.shape(x_1_train[0])[0])
@@ -35,9 +42,7 @@ print("the value of beta_1 in model_2 of two compartment model is",start_2['beta
 
 
 T, Y = create_data_nonlinear(p=0.01)
-model = FeedForwardNetwork(2)
-model.load_weights('./NN_nonlinear_checkpoints_0.01/my_checkpoint')
-x_1_train, y_1_train, y_2_train  = obtain_nonlinear_data(model, T)
+x_1_train, y_1_train, y_2_train  = obtain_nonlinear_data(network_nonlinear, T)
 
 start_1,trace_1 = Bayesian_regression_conti_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_conti_spike_slab(y_2_train,x_1_train,np.shape(x_1_train[0])[0])
@@ -49,10 +54,7 @@ print("the value of beta_1 in model_2 of nonlinear compartment model is",start_2
 
 
 T, Y = create_data_lorenz(p=0.01)
-
-model = FeedForwardNetwork(2)
-model.load_weights('./NN_lorenz_checkpoints_0.01/my_checkpoint')
-x_1_train, y_1_train, y_2_train, y_3_train  = obtain_lorenz_data(model, T)
+x_1_train, y_1_train, y_2_train, y_3_train  = obtain_lorenz_data(network_lorenz, T)
 
 start_1,trace_1 = Bayesian_regression_conti_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_conti_spike_slab(y_2_train,x_1_train,np.shape(x_1_train[0])[0])

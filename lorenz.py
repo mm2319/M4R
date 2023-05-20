@@ -14,8 +14,7 @@ def add_percent_noise(v, p):
     for i in range(len(v)):
         noise = np.random.normal(0., np.abs(p*v[i]))
         v[i] = v[i] + noise
-        if v[i] <= 0:
-            v[i] = 1.e-10
+
 
 
 def create_data_lorenz(U0=np.array([-8., 7. ,27.]), ts = np.arange(0,10,0.01), p=0):
