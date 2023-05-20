@@ -63,9 +63,9 @@ print("the value of beta_1 in model_2 of nonlinear compartment model is",start_2
 
 T, Y = create_data_lorenz(p=0.01)
 
-Y[:,0] = signal.savgol_filter(Y[:,0], 99, 2, mode= 'nearest')
-Y[:,1] = signal.savgol_filter(Y[:,1], 99, 2, mode= 'nearest')
-Y[:,2] = signal.savgol_filter(Y[:,2], 99, 2, mode= 'nearest')
+Y[:,2] = signal.savgol_filter(Y[:,2],  17, 2, mode= 'nearest')
+Y[:,1] = signal.savgol_filter(Y[:,1],  3, 2, mode= 'nearest')
+Y[:,0] = signal.savgol_filter(Y[:,0], 3, 2, mode= 'nearest')
 result_1 = derivative.dxdt(Y[:,0], T, kind="spline", s=1.e-2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="spline", s=1.e-2)
 result_3 = derivative.dxdt(Y[:,2], T, kind="spline", s=1.e-2)
