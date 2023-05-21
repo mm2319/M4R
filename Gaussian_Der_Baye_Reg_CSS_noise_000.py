@@ -33,13 +33,13 @@ T, Y = create_data_twocompart(p=0.0)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')])    
-def evaluate_model_1(**params):
+def evaluate_tc_model_1(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
                 x_star=np.linspace(0,10,1000),  # set to test points
                 X = np.array(T),     # set to observed x
-                y = np.array(Y[0,:]),       # set to observed y
+                y = np.array(Y[:,0]),       # set to observed y
                 size=1,    # draw 100 posterior samples 
                 theta=theta,
                 sigma=params["sigma"]
@@ -48,17 +48,17 @@ def evaluate_model_1(**params):
   return -negative_logli
 # Bayesian Optimisation
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_two_compart_1 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_two_compart_1 = gp_minimize(evaluate_tc_model_1, bounds, n_calls=250)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
-def evaluate_model_1(**params):
+def evaluate_tc_model_2(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
                 x_star=np.linspace(0,10,1000),  # set to test points
                 X = np.array(T),     # set to observed x
-                y = np.array(Y[1,:]),       # set to observed y
+                y = np.array(Y[:,1]),       # set to observed y
                 size=1,    # draw 100 posterior samples 
                 theta=theta,
                 sigma=params["sigma"]
@@ -66,7 +66,7 @@ def evaluate_model_1(**params):
   negative_logli= y_pred
   return -negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_two_compart_2 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_two_compart_2 = gp_minimize(evaluate_tc_model_2, bounds, n_calls=250)
 Y_compart = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
@@ -86,7 +86,7 @@ y_pred_2 = gp.predict(
               )
 Y_compart.append(y_pred_1)
 Y_compart.append(y_pred_2)
-
+Y_compart = np.array(Y_compart).T
 
 
 # finds the hyperparameters for nonlinear
@@ -94,7 +94,7 @@ T, Y = create_data_nonlinear(p=0.0)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')])    
-def evaluate_model_1(**params):
+def evaluate_nl_model_1(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
@@ -109,11 +109,11 @@ def evaluate_model_1(**params):
   return -negative_logli
 # Bayesian Optimisation
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_nonlinear_1 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_nonlinear_1 = gp_minimize(evaluate_nl_model_1, bounds, n_calls=250)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
-def evaluate_model_1(**params):
+def evaluate_nl_model_2(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
@@ -127,7 +127,7 @@ def evaluate_model_1(**params):
   negative_logli= y_pred
   return -negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_nonlinear_2 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_nonlinear_2 = gp_minimize(evaluate_nl_model_2, bounds, n_calls=250)
 Y_nonlinear = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
@@ -147,7 +147,7 @@ y_pred_2 = gp.predict(
               )
 Y_nonlinear.append(y_pred_1)
 Y_nonlinear.append(y_pred_2)
-
+Y_nonlinear = np.array(Y_nonlinear).T
 
 
 # finds the hyperparameters for lorenz
@@ -155,7 +155,7 @@ T, Y = create_data_lorenz(p=0.0)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')])    
-def evaluate_model_1(**params):
+def evaluate_lr_model_1(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
@@ -170,11 +170,11 @@ def evaluate_model_1(**params):
   return -negative_logli
 # Bayesian Optimisation
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_lorenz_1 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_lorenz_1 = gp_minimize(evaluate_lr_model_1, bounds, n_calls=250)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
-def evaluate_model_1(**params):
+def evaluate_lr_model_2(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
@@ -188,11 +188,11 @@ def evaluate_model_1(**params):
   negative_logli= y_pred
   return -negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_lorenz_2 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_lorenz_2 = gp_minimize(evaluate_lr_model_2, bounds, n_calls=250)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
-def evaluate_model_1(**params):
+def evaluate_lr_model_3(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
   y_pred = gp.loglikelihood(
@@ -206,12 +206,12 @@ def evaluate_model_1(**params):
   negative_logli= y_pred
   return -negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_lorenz_3 = gp_minimize(evaluate_model_1, bounds, n_calls=250)
+para_lorenz_3 = gp_minimize(evaluate_lr_model_3, bounds, n_calls=250)
 Y_lorenz = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
               X = np.array(T),     # set to observed x
-              y = np.array(Y[0,:]),       # set to observed y
+              y = np.array(Y[:,0]),       # set to observed y
               size=1,    # draw 100 posterior samples 
               theta=[para_lorenz_1.x[0],para_lorenz_1.x[1]],
               sigma=para_lorenz_1.x[2]
@@ -219,7 +219,7 @@ y_pred_1 = gp.predict(
 y_pred_2 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
               X = np.array(T),     # set to observed x
-              y = np.array(Y[1,:]),       # set to observed y
+              y = np.array(Y[:,1]),       # set to observed y
               size=1,    # draw 100 posterior samples 
               theta=[para_lorenz_2.x[0],para_lorenz_2.x[1]],
               sigma=para_lorenz_2.x[2]
@@ -227,7 +227,7 @@ y_pred_2 = gp.predict(
 y_pred_3 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
               X = np.array(T),     # set to observed x
-              y = np.array(Y[2:]),       # set to observed y
+              y = np.array(Y[:,2]),       # set to observed y
               size=1,    # draw 100 posterior samples 
               theta=[para_lorenz_3.x[0],para_lorenz_3.x[1]],
               sigma=para_lorenz_3.x[2]
@@ -235,7 +235,7 @@ y_pred_3 = gp.predict(
 Y_lorenz.append(y_pred_1)
 Y_lorenz.append(y_pred_2)
 Y_lorenz.append(y_pred_3)
-
+Y_lorenz= np.array(Y_lorenz).T
 print("$"*25)
 print("for the continuous spike and slab prior")
 print("$"*25)
@@ -256,7 +256,7 @@ gp = GP_derivative(kernel=rbf, kernel_diff=rbf_fd)
 result_2 = gp.predict(
 x_star=toy_xp,  # set to test points
 X = np.array(T),     # set to observed x
-y = np.array(Y[:,0]),       # set to observed y
+y = np.array(Y[:,1]),       # set to observed y
 size=1,    # draw 100 posterior samples 
 theta=[para_two_compart_2.x[0],para_two_compart_2.x[1]],
 sigma=para_two_compart_2.x[2]
@@ -284,7 +284,7 @@ sigma=para_nonlinear_1.x[2]
 result_2 = gp.predict(
 x_star=toy_xp,  # set to test points
 X = np.array(T),     # set to observed x
-y = np.array(Y[:,0]),       # set to observed y
+y = np.array(Y[:,1]),       # set to observed y
 size=1,    # draw 100 posterior samples 
 theta=[para_nonlinear_2.x[0],para_nonlinear_2.x[1]],
 sigma=para_nonlinear_2.x[2]
@@ -313,7 +313,7 @@ sigma=para_lorenz_1.x[2]
 result_2 = gp.predict(
 x_star=toy_xp,  # set to test points
 X = np.array(T),     # set to observed x
-y = np.array(Y[:,0]),       # set to observed y
+y = np.array(Y[:,1]),       # set to observed y
 size=1,    # draw 100 posterior samples 
 theta=[para_lorenz_2.x[0],para_lorenz_2.x[1]],
 sigma=para_lorenz_2.x[2]
@@ -321,7 +321,7 @@ sigma=para_lorenz_2.x[2]
 result_3 = gp.predict(
 x_star=toy_xp,  # set to test points
 X = np.array(T),     # set to observed x
-y = np.array(Y[:,0]),       # set to observed y
+y = np.array(Y[:,2]),       # set to observed y
 size=1,    # draw 100 posterior samples 
 theta=[para_lorenz_3.x[0],para_lorenz_3.x[1]],
 sigma=para_lorenz_3.x[2]
