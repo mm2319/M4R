@@ -208,5 +208,5 @@ class GP:
     K = rbf(X, X, theta)+1.e-8*np.eye(n)
     alpha = np.linalg.inv(rbf(X, X, theta) + (sigma**2)*np.identity(rbf(X, X, theta).shape[1]))@y
     L= np.linalg.cholesky(K)
-    return -0.5*y.T.dot(alpha) - np.sum(np.log(np.diag(L))) - 0.5*n*np.log(2*np.pi)
+    return 0.5*y.T.dot(alpha) + np.sum(np.log(np.diag(L))) + 0.5*n*np.log(2*np.pi)
   
