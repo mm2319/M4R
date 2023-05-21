@@ -333,7 +333,7 @@ result_3 = gp.predict(
   sigma=para_lorenz_3.x[2]
 )
 
-x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1[0], result_2[0], result_3[0], num_samples = 1000, Y = Y_lorenz)
+x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1[0], result_2[0], result_3[0], num_samples = 1000, y = Y_lorenz)
 
 start_1,trace_1 = Bayesian_regression_disc_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_disc_spike_slab(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
@@ -442,7 +442,7 @@ result_3 = gp.predict(
   sigma=para_lorenz_3.x[2]
 )
 
-x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1[0], result_2[0], result_3[0], num_samples = 1000, Y = Y_lorenz)
+x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1[0], result_2[0], result_3[0], num_samples = 1000, y = Y_lorenz)
 
 start_1,trace_1 = Bayesian_regression_SS_Selction(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_SS_Selction(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
