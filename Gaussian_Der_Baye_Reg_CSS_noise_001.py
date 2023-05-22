@@ -48,7 +48,7 @@ def evaluate_tc_model_1(**params):
   return -negative_logli
 # Bayesian Optimisation
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_two_compart_1 = gp_minimize(evaluate_tc_model_1, bounds, n_calls=250)
+para_two_compart_1 = gp_minimize(evaluate_tc_model_1, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -64,9 +64,9 @@ def evaluate_tc_model_2(**params):
                 sigma=params["sigma"]
               )
   negative_logli= y_pred
-  return -negative_logli
+  return negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_two_compart_2 = gp_minimize(evaluate_tc_model_2, bounds, n_calls=250)
+para_two_compart_2 = gp_minimize(evaluate_tc_model_2, bounds, n_calls=50)
 Y_compart = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
@@ -106,10 +106,10 @@ def evaluate_nl_model_1(**params):
                 sigma=params["sigma"]
               )
   negative_logli= y_pred
-  return -negative_logli
+  return negative_logli
 # Bayesian Optimisation
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_nonlinear_1 = gp_minimize(evaluate_nl_model_1, bounds, n_calls=250)
+para_nonlinear_1 = gp_minimize(evaluate_nl_model_1, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -125,9 +125,9 @@ def evaluate_nl_model_2(**params):
                 sigma=params["sigma"]
               )
   negative_logli= y_pred
-  return -negative_logli
+  return negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_nonlinear_2 = gp_minimize(evaluate_nl_model_2, bounds, n_calls=250)
+para_nonlinear_2 = gp_minimize(evaluate_nl_model_2, bounds, n_calls=50)
 Y_nonlinear = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
@@ -167,10 +167,10 @@ def evaluate_lr_model_1(**params):
                 sigma=params["sigma"]
               )
   negative_logli= y_pred
-  return -negative_logli
+  return negative_logli
 # Bayesian Optimisation
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_lorenz_1 = gp_minimize(evaluate_lr_model_1, bounds, n_calls=250)
+para_lorenz_1 = gp_minimize(evaluate_lr_model_1, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -186,9 +186,9 @@ def evaluate_lr_model_2(**params):
                 sigma=params["sigma"]
               )
   negative_logli= y_pred
-  return -negative_logli
+  return negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_lorenz_2 = gp_minimize(evaluate_lr_model_2, bounds, n_calls=250)
+para_lorenz_2 = gp_minimize(evaluate_lr_model_2, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -204,9 +204,9 @@ def evaluate_lr_model_3(**params):
                 sigma=params["sigma"]
               )
   negative_logli= y_pred
-  return -negative_logli
+  return negative_logli
 bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
-para_lorenz_3 = gp_minimize(evaluate_lr_model_3, bounds, n_calls=250)
+para_lorenz_3 = gp_minimize(evaluate_lr_model_3, bounds, n_calls=50)
 Y_lorenz = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
