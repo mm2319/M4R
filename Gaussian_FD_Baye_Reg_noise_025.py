@@ -269,7 +269,7 @@ sigma=para_two_compart_2.x[2]
 result_1 = derivative.dxdt(Y[:,0], T, kind="finite_difference", k=2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="finite_difference", k=2)
 
-x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_Two_compart( result_1[0], result_2[0], num_samples = 1000, Y = Y_compart)
+x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_Two_compart( result_1, result_2, num_samples = 1000, Y = Y_compart)
 
 start_1,trace_1 = Bayesian_regression_disc_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_disc_spike_slab(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
@@ -307,7 +307,7 @@ sigma=para_nonlinear_2.x[2]
 result_1 = derivative.dxdt(Y[:,0], T, kind="finite_difference", k=2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="finite_difference", k=2)
 
-x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_NonLinear( result_1[0], result_2[0], num_samples = 1000, Y = Y_nonlinear)
+x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_NonLinear( result_1, result_2, num_samples = 1000, Y = Y_nonlinear)
 
 start_1,trace_1 = Bayesian_regression_disc_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_disc_spike_slab(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
@@ -354,7 +354,7 @@ sigma=para_lorenz_3.x[2]
 result_1 = derivative.dxdt(Y[:,0], T, kind="finite_difference", k=2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="finite_difference", k=2)
 result_3 = derivative.dxdt(Y[:,2], T, kind="finite_difference", k=2)
-x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1[0], result_2[0], result_3[0], num_samples = 1000, y = Y_lorenz)
+x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1, result_2, result_3, num_samples = 1000, y = Y_lorenz)
 
 start_1,trace_1 = Bayesian_regression_disc_spike_slab(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_disc_spike_slab(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
@@ -394,7 +394,7 @@ sigma=para_two_compart_2.x[2]
 
 result_1 = derivative.dxdt(Y[:,0], T, kind="finite_difference", k=2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="finite_difference", k=2)
-x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_Two_compart( result_1[0], result_2[0], num_samples = 1000, Y = Y_compart)
+x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_Two_compart( result_1, result_2, num_samples = 1000, Y = Y_compart)
 
 start_1,trace_1 = Bayesian_regression_SS_Selction(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_SS_Selction(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
@@ -432,7 +432,7 @@ sigma=para_nonlinear_2.x[2]
 
 result_1 = derivative.dxdt(Y[:,0], T, kind="finite_difference", k=2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="finite_difference", k=2)
-x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_NonLinear( result_1[0], result_2[0], num_samples = 1000, Y = Y_nonlinear)
+x_1_train, y_1_train, x_2_train, y_2_train  = obtain_train_data_NonLinear( result_1, result_2, num_samples = 1000, Y = Y_nonlinear)
 
 start_1,trace_1 = Bayesian_regression_SS_Selction(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_SS_Selction(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
@@ -481,7 +481,7 @@ sigma=para_lorenz_3.x[2]
 result_1 = derivative.dxdt(Y[:,0], T, kind="finite_difference", k=2)
 result_2 = derivative.dxdt(Y[:,1], T, kind="finite_difference", k=2)
 result_3 = derivative.dxdt(Y[:,2], T, kind="finite_difference", k=2)
-x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1[0], result_2[0], result_3[0], num_samples = 1000, y = Y_lorenz)
+x_1_train, y_1_train, x_2_train, y_2_train, x_3_train, y_3_train = obtain_train_data_Lorenz( result_1, result_2, result_3, num_samples = 1000, y = Y_lorenz)
 
 start_1,trace_1 = Bayesian_regression_SS_Selction(y_1_train,x_1_train,np.shape(x_1_train[0])[0])
 start_2,trace_2 = Bayesian_regression_SS_Selction(y_2_train,x_2_train,np.shape(x_1_train[0])[0])
