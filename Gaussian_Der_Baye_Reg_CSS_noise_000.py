@@ -86,7 +86,7 @@ y_pred_2 = gp.predict(
               )
 Y_compart.append(y_pred_1[0])
 Y_compart.append(y_pred_2[0])
-Y_compart = np.array(Y_compart)
+Y_compart = np.array(Y_compart).T
 
 
 # finds the hyperparameters for nonlinear
