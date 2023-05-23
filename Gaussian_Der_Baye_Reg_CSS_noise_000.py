@@ -47,7 +47,7 @@ def evaluate_tc_model_1(**params):
   negative_logli= y_pred
   return negative_logli
 # Bayesian Optimisation
-bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
+bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
 para_two_compart_1 = gp_minimize(evaluate_tc_model_1, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
@@ -65,7 +65,7 @@ def evaluate_tc_model_2(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
+bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
 para_two_compart_2 = gp_minimize(evaluate_tc_model_2, bounds, n_calls=50)
 Y_compart = []
 y_pred_1 = gp.predict(
@@ -108,7 +108,7 @@ def evaluate_nl_model_1(**params):
   negative_logli= y_pred
   return negative_logli
 # Bayesian Optimisation
-bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
+bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
 para_nonlinear_1 = gp_minimize(evaluate_nl_model_1, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
@@ -126,7 +126,7 @@ def evaluate_nl_model_2(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
+bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
 para_nonlinear_2 = gp_minimize(evaluate_nl_model_2, bounds, n_calls=50)
 Y_nonlinear = []
 y_pred_1 = gp.predict(
@@ -169,7 +169,7 @@ def evaluate_lr_model_1(**params):
   negative_logli= y_pred
   return negative_logli
 # Bayesian Optimisation
-bounds = [(1e-7, 1.e+1), (1e-7, 1.e+1), (1e-7, 1.e+1)]
+bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
 para_lorenz_1 = gp_minimize(evaluate_lr_model_1, bounds, n_calls=50)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
