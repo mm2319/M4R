@@ -33,9 +33,9 @@ from skopt.plots import plot_convergence
 gp = GP(kernel=rbf,kernel_diff=rbf_pd)
 # finds the hyperparameters for two_compart
 T, Y = create_data_twocompart(p=0.01)
-@use_named_args([Real(1e-7, 1e-1, name='theta_1'),
-      Real(1e-7, 1e-1, name='theta_2'),
-      Real(1e-7, 1e-1, name='sigma')])    
+@use_named_args([Real(1e-7, 1, name='theta_1'),
+      Real(1e-7, 1, name='theta_2'),
+      Real(1e-7, 1, name='sigma')])    
 def evaluate_tc_model_1(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
@@ -68,8 +68,8 @@ def evaluate_tc_model_2(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
-para_two_compart_2 = gp_minimize(evaluate_tc_model_2, bounds, n_calls=50)
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
+para_two_compart_2 = gp_minimize(evaluate_tc_model_2, bounds, n_calls=100)
 Y_compart = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
@@ -94,9 +94,9 @@ Y_compart = np.array(Y_compart).T
 
 # finds the hyperparameters for nonlinear
 T, Y = create_data_nonlinear(p=0.01)
-@use_named_args([Real(1e-7, 1e-1, name='theta_1'),
-      Real(1e-7, 1e-1, name='theta_2'),
-      Real(1e-7, 1e-1, name='sigma')])    
+@use_named_args([Real(1e-7, 1, name='theta_1'),
+      Real(1e-7, 1, name='theta_2'),
+      Real(1e-7, 1, name='sigma')])    
 def evaluate_nl_model_1(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
@@ -111,8 +111,8 @@ def evaluate_nl_model_1(**params):
   negative_logli= y_pred
   return negative_logli
 # Bayesian Optimisation
-bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
-para_nonlinear_1 = gp_minimize(evaluate_nl_model_1, bounds, n_calls=50)
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
+para_nonlinear_1 = gp_minimize(evaluate_nl_model_1, bounds, n_calls=100)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -129,8 +129,8 @@ def evaluate_nl_model_2(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
-para_nonlinear_2 = gp_minimize(evaluate_nl_model_2, bounds, n_calls=50)
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
+para_nonlinear_2 = gp_minimize(evaluate_nl_model_2, bounds, n_calls=100)
 Y_nonlinear = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
@@ -155,9 +155,9 @@ Y_nonlinear = np.array(Y_nonlinear).T
 
 # finds the hyperparameters for lorenz
 T, Y = create_data_lorenz(p=0.01)
-@use_named_args([Real(1e-7, 1e-1, name='theta_1'),
-      Real(1e-7, 1e-1, name='theta_2'),
-      Real(1e-7, 1e-1, name='sigma')])    
+@use_named_args([Real(1e-7, 1, name='theta_1'),
+      Real(1e-7, 1, name='theta_2'),
+      Real(1e-7, 1, name='sigma')])    
 def evaluate_lr_model_1(**params):
   gp = GP(kernel=rbf,kernel_diff=rbf_pd)
   theta=[params["theta_1"],params["theta_2"]] 
@@ -172,8 +172,8 @@ def evaluate_lr_model_1(**params):
   negative_logli= y_pred
   return negative_logli
 # Bayesian Optimisation
-bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
-para_lorenz_1 = gp_minimize(evaluate_lr_model_1, bounds, n_calls=50)
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
+para_lorenz_1 = gp_minimize(evaluate_lr_model_1, bounds, n_calls=100)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -190,8 +190,8 @@ def evaluate_lr_model_2(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
-para_lorenz_2 = gp_minimize(evaluate_lr_model_2, bounds, n_calls=50)
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
+para_lorenz_2 = gp_minimize(evaluate_lr_model_2, bounds, n_calls=100)
 @use_named_args([Real(1e-7, 1e+1, name='theta_1'),
       Real(1e-7, 1e+1, name='theta_2'),
       Real(1e-7, 1e+1, name='sigma')]) 
@@ -208,8 +208,8 @@ def evaluate_lr_model_3(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e-1), (1e-7, 1.e-1), (1e-7, 1.e-1)]
-para_lorenz_3 = gp_minimize(evaluate_lr_model_3, bounds, n_calls=50)
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
+para_lorenz_3 = gp_minimize(evaluate_lr_model_3, bounds, n_calls=100)
 Y_lorenz = []
 y_pred_1 = gp.predict(
               x_star=np.linspace(0,10,1000),  # set to test points
