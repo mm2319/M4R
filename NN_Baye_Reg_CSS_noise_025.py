@@ -17,9 +17,13 @@ from Derivative_Data_Two_Compart import obtain_train_data_Two_compart
 from Bayesian_Regression_Disc_Spike_and_Slab import Bayesian_regression_disc_spike_slab
 from Bayesian_Regression_Cont_Spike_and_Slab import Bayesian_regression_conti_spike_slab
 from Bayesian_Regression_SS_Selection_2 import Bayesian_regression_SS_Selction
+import os
+os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 network_twocompart = FeedForwardNetwork(2)
 network_nonlinear = FeedForwardNetwork(2)
 network_lorenz = FeedForwardNetwork(3)
+
 T, Y = create_data_lorenz(p=0.25)
 train_lorenz(network_lorenz, 8000,T=T,Y=Y)
 network_lorenz.save_weights('./NN_lorenz_checkpoints_025/my_checkpoint', save_format="tf")
