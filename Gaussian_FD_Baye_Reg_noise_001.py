@@ -235,9 +235,9 @@ y_pred_3 = gp.predict(
               theta=[para_lorenz_3.x[0],para_lorenz_3.x[1]],
               sigma=para_lorenz_3.x[2]
               )
-Y_lorenz.append(y_pred_1)
-Y_lorenz.append(y_pred_2)
-Y_lorenz.append(y_pred_3)
+Y_lorenz.append(y_pred_1[0])
+Y_lorenz.append(y_pred_2[0])
+Y_lorenz.append(y_pred_3[0])
 Y_lorenz = np.array(Y_lorenz).T
 
 print("$"*25)

@@ -205,7 +205,7 @@ def evaluate_lr_model_3(**params):
               )
   negative_logli= y_pred
   return negative_logli
-bounds = [(1e-7, 1.e), (1e-7, 1.e), (1e-7, 1.e)]
+bounds = [(1e-7, 1.), (1e-7, 1.), (1e-7, 1.)]
 para_lorenz_3 = gp_minimize(evaluate_lr_model_3, bounds, n_calls=100)
 Y_lorenz = []
 y_pred_1 = gp.predict(
