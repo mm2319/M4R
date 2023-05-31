@@ -26,4 +26,4 @@ module load anaconda3/personal
 
 cd /rds/general/user/mm2319/home/M4R/
 
-python3 Neural_Network_training.py
+python3 NN_train_nl_000.py
