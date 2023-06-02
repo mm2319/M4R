@@ -1,7 +1,7 @@
 import numpy as np
 def obtain_train_data_NonLinear( result_1, result_2, num_samples, Y ):
     x_1_train = []
-    num_samples=1000
+    num_samples=num_samples
     y_1_train = []
     x_2_train = []
     y_2_train = []

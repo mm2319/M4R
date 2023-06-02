@@ -18,6 +18,7 @@ from Derivative_Data_Two_Compart import obtain_train_data_Two_compart
 from Bayesian_Regression_Disc_Spike_and_Slab import Bayesian_regression_disc_spike_slab
 from Bayesian_Regression_Cont_Spike_and_Slab import Bayesian_regression_conti_spike_slab
 from Bayesian_Regression_SS_Selection_2 import Bayesian_regression_SS_Selction
+network_twocompart = FeedForwardNetwork(2)
 T, Y = create_data_twocompart(p=0.25)
 train_twocompart(network_twocompart,  6000,T=T,Y=Y)
 network_twocompart.save_weights('./NN_twocompart_checkpoints_025/my_checkpoint', save_format="tf")

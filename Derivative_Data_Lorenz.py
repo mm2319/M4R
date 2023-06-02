@@ -1,6 +1,6 @@
 import numpy as np
 def obtain_train_data_Lorenz( result_1, result_2, result_3, num_samples,y):
-    num_samples=1000
+    num_samples=num_samples
     x_1_train = []
     y_1_train = []
     x_2_train = []
