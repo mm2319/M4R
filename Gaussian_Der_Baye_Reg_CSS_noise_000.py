@@ -261,7 +261,8 @@ print("the value of z_1 in model_1 of two compartment model is",start_1['z_1'])
 print("the value of beta_1 in model_1 of two compartment model is",start_1['beta_1'])
 print("the value of z_1 in model_2 of two compartment model is",start_2['z_1'])
 print("the value of beta_1 in model_2 of two compartment model is",start_2['beta_1'])
-
+np.save('gp_BR_CSS_000_tc_1',start_1['beta_1'])
+np.save('gp_BR_CSS_000_tc_2',start_2['beta_1'])
 
 result_1 = gp.predict(
 x_star=toy_xp,  # set to test points
@@ -289,7 +290,8 @@ print("the value of z_1 in model_1 of nonlinear compartment model is",start_1['z
 print("the value of beta_1 in model_1 of nonlinear compartment model is",start_1['beta_1'])
 print("the value of z_1 in model_2 of nonlinear compartment model is",start_2['z_1'])
 print("the value of beta_1 in model_2 of nonlinear compartment model is",start_2['beta_1'])
-
+np.save('gp_BR_CSS_000_nl_1',start_1['beta_1'])
+np.save('gp_BR_CSS_000_nl_2',start_2['beta_1'])
 
 result_1 = gp.predict(
 x_star=toy_xp,  # set to test points
@@ -327,3 +329,6 @@ print("the value of z_1 in model_2 of lorenz model is",start_2['z_1'])
 print("the value of beta_1 in model_2 of lorenz model is",start_2['beta_1'])
 print("the value of z_1 in model_3 of lorenz model is",start_3['z_1'])
 print("the value of beta_1 in model_3 of lorenz model is",start_3['beta_1'])
+np.save('gp_BR_CSS_000_lr_1',start_1['beta_1'])
+np.save('gp_BR_CSS_000_lr_2',start_2['beta_1'])
+np.save('gp_BR_CSS_000_lr_3',start_3['beta_1'])

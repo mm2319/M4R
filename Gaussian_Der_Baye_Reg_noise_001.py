@@ -261,6 +261,10 @@ print("the value of z_1 in model_1 of twocompart model is",start_1['z_1'])
 print("the value of pn_1 in model_1 of twocompart model is",start_1['pn_1'])
 print("the value of z_1 in model_2 of twocompart model is",start_2['z_1'])
 print("the value of pn_1 in model_2 of twocompart model is",start_2['pn_1'])
+np.save('gp_BR_DSS_001_tc_1',start_1['z_1'])
+np.save('gp_BR_DSS_001_tc_1_Z',start_1['pn_1'])
+np.save('gp_BR_DSS_001_tc_2',start_2['z_1'])
+np.save('gp_BR_DSS_001_tc_2_Z',start_2['pn_1'])
 
 result_1 = gp.predict(
   x_star=toy_xp,  # set to test points
@@ -288,6 +292,10 @@ print("the value of z_1 in model_1 of nonlinear model is",start_1['z_1'])
 print("the value of pn_1 in model_1 of nonlinear model is",start_1['pn_1'])
 print("the value of z_1 in model_2 of nonlinear model is",start_2['z_1'])
 print("the value of pn_1 in model_2 of nonlinear model is",start_2['pn_1'])
+np.save('gp_BR_DSS_001_nl_1',start_1['z_1'])
+np.save('gp_BR_DSS_001_nl_1_Z',start_1['pn_1'])
+np.save('gp_BR_DSS_001_nl_2',start_2['z_1'])
+np.save('gp_BR_DSS_001_nl_2_Z',start_2['pn_1'])
 
 
 
@@ -327,7 +335,12 @@ print("the value of z_1 in model_2 of lorenz model is",start_2['z_1'])
 print("the value of pn_1 in model_2 of lorenz model is",start_2['pn_1'])
 print("the value of z_1 in model_3 of lorenz model is",start_3['z_1'])
 print("the value of pn_1 in model_3 of lorenz model is",start_3['pn_1'])
-
+np.save('gp_BR_DSS_001_lr_1',start_1['z_1'])
+np.save('gp_BR_DSS_001_lr_1_Z',start_1['pn_1'])
+np.save('gp_BR_DSS_001_lr_2',start_2['z_1'])
+np.save('gp_BR_DSS_001_lr_2_Z',start_2['pn_1'])
+np.save('gp_BR_DSS_001_lr_3',start_3['z_1'])
+np.save('gp_BR_DSS_001_lr_3_Z',start_3['pn_1'])
 print("$"*25)
 print("for the modified spike and slab prior")
 print("$"*25)
@@ -364,6 +377,10 @@ print("the value of pn_1 in model_1 of twocompart model is",start_1['pn_1'])
 print("the value of z_1 in model_2 of twocompart model is",start_2['z_1'])
 print("the value of pn_1 in model_2 of twocompart model is",start_2['p_1'])
 print("the value of pn_1 in model_2 of twocompart model is",start_2['pn_1'])
+np.save('gp_BR_MDSS_001_tc_1',start_1['z_1'])
+np.save('gp_BR_MDSS_001_tc_1_Z',start_1['pn_1'])
+np.save('gp_BR_MDSS_001_tc_2',start_2['z_1'])
+np.save('gp_BR_MDSS_001_tc_2_Z',start_2['pn_1'])
 
 
 result_1 = gp.predict(
@@ -394,6 +411,10 @@ print("the value of pn_1 in model_1 of nonlinear model is",start_1['pn_1'])
 print("the value of z_1 in model_2 of nonlinear model is",start_2['z_1'])
 print("the value of pn_1 in model_2 of nonlinear model is",start_2['p_1'])
 print("the value of pn_1 in model_2 of nonlinear model is",start_2['pn_1'])
+np.save('gp_BR_MDSS_001_nl_1',start_1['z_1'])
+np.save('gp_BR_MDSS_001_nl_1_Z',start_1['pn_1'])
+np.save('gp_BR_MDSS_001_nl_2',start_2['z_1'])
+np.save('gp_BR_MDSS_001_nl_2_Z',start_2['pn_1'])
 
 
 result_1 = gp.predict(
@@ -435,3 +456,9 @@ print("the value of pn_1 in model_2 of lorenz model is",start_2['pn_1'])
 print("the value of z_1 in model_3 of lorenz model is",start_3['z_1'])
 print("the value of pn_1 in model_3 of lorenz model is",start_3['p_1'])
 print("the value of pn_1 in model_3 of lorenz model is",start_3['pn_1'])
+np.save('gp_BR_MDSS_001_lr_1',start_1['z_1'])
+np.save('gp_BR_MDSS_001_lr_1_Z',start_1['pn_1'])
+np.save('gp_BR_MDSS_001_lr_2',start_2['z_1'])
+np.save('gp_BR_MDSS_001_lr_2_Z',start_2['pn_1'])
+np.save('gp_BR_MDSS_001_lr_3',start_3['z_1'])
+np.save('gp_BR_MDSS_001_lr_3_Z',start_3['pn_1'])

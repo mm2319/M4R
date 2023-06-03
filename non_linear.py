@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
+import random 
 def nonlinear_oscillator(y, t):
     """
     This function is the the ODE functions and, this function is used for scipy.solve_ivp function to synthesis data
@@ -18,6 +19,8 @@ def nonlinear_oscillator(y, t):
     return dydt
 
 def add_percent_noise(v, p):
+    random.seed(0)
+    np.random.seed(0)
     for i in range(len(v)):
         noise = np.random.normal(0., np.abs(p*v[i]))
         v[i] = v[i] + noise
