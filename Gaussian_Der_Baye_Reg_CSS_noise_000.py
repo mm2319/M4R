@@ -38,7 +38,7 @@ def optim_hyperparams(init_params, data_X, data_y, gp, method="L-BFGS-B", maxite
   """
   # define negative log marginal likelihood as objective
   # input is unpacked to theta and sigma
-  gp = GP(kernel=rbf,kernel_diff=rbf_pd)
+  gp = GP(kernel=rbf,kernel_diff=rbf_pd_1)
   objective = lambda params: gp.loglikelihood(
                 x_star=np.arange(0,10,0.01),  # set to test points
                 X = data_X,     # set to observed x
@@ -91,7 +91,7 @@ def optim_hyperparams_multiple_runs(init_params_list, data_X, data_y, gp, maxite
 
   return optim_res_list, log_lik_history_list 
 
-gp = GP(kernel=rbf,kernel_diff=rbf_pd)
+gp = GP(kernel=rbf,kernel_diff=rbf_pd_1)
 T, Y_tc = create_data_twocompart(p=0.0)
 np.random.seed(0)
 
