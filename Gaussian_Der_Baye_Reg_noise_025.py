@@ -19,7 +19,7 @@ from Derivative_Data_NonLinear import obtain_train_data_NonLinear
 from Derivative_Data_Two_Compart import obtain_train_data_Two_compart
 from Bayesian_Regression_Disc_Spike_and_Slab import Bayesian_regression_disc_spike_slab
 from Bayesian_Regression_SS_Selection_2 import Bayesian_regression_SS_Selction
-from Gaussian_process_der import GP, GP_derivative,rbf,rbf_fd,rbf_pd
+from Gaussian_process_der import GP, GP_derivative,rbf,rbf_fd,rbf_pd_2,rbf_pd_1,RBF_partial_diff_first,RBF_partial_diff_second
 from sklearn.datasets import make_regression
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
@@ -33,7 +33,7 @@ from scipy.optimize import minimize
 import autograd.numpy as np
 from autograd import value_and_grad
 from skopt.plots import plot_convergence
-gp = GP(kernel=rbf,kernel_diff=rbf_pd)
+gp = GP(kernel=rbf,kernel_diff=rbf_fd)
 np.random.seed(0)
 def optim_hyperparams(init_params, data_X, data_y, gp, method="L-BFGS-B", maxiter=500):
   """
@@ -42,7 +42,7 @@ def optim_hyperparams(init_params, data_X, data_y, gp, method="L-BFGS-B", maxite
   """
   # define negative log marginal likelihood as objective
   # input is unpacked to theta and sigma
-  gp = GP(kernel=rbf,kernel_diff=rbf_pd)
+  gp = GP(kernel=rbf,kernel_diff=rbf_fd)
   objective = lambda params: gp.loglikelihood(
                 x_star=np.arange(0,10,0.01),  # set to test points
                 X = data_X,     # set to observed x

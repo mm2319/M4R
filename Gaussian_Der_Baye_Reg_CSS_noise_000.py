@@ -17,7 +17,7 @@ from Derivative_Data_Two_Compart import obtain_train_data_Two_compart
 from Bayesian_Regression_Disc_Spike_and_Slab import Bayesian_regression_disc_spike_slab
 from Bayesian_Regression_Cont_Spike_and_Slab import Bayesian_regression_conti_spike_slab
 from Bayesian_Regression_SS_Selection_2 import Bayesian_regression_SS_Selction
-from Gaussian_process_der import GP, GP_derivative,rbf,rbf_fd,rbf_pd
+from Gaussian_process_der import GP, GP_derivative,rbf,rbf_fd,rbf_pd_2,rbf_pd_1,RBF_partial_diff_first,RBF_partial_diff_second
 from sklearn.datasets import make_regression
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
