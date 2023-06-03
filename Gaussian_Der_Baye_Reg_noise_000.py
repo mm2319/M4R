@@ -75,7 +75,7 @@ def optim_hyperparams_multiple_runs(init_params_list, data_X, data_y, gp, maxite
 
     # find best params
     optim_res = optim_hyperparams(
-        init_params, data_X, data_y, gp, method="L-BFGS-B", maxiter=maxiter,
+        init_params, data_X, data_y, gp, method="CG", maxiter=maxiter,
     )
     # log_lik_history = show_optim_history(optim_res.allvecs, gp, data_X, data_y)
     params = optim_res.x
