@@ -17,21 +17,17 @@ class FeedForwardNetwork(tf.keras.Model):
         self.dense_3 = tf.keras.layers.Dense(128, activation="selu")
         self.dense_4 = tf.keras.layers.Dense(256, activation="selu")
         self.dense_5 = tf.keras.layers.Dense(1024, activation="selu")
-        self.dropout = tf.keras.layers.Dropout(0.5)
         self.dense_6 = tf.keras.layers.Dense(256, activation="selu")
         self.dense_7 = tf.keras.layers.Dense(128, activation="selu")
         self.dense_8 = tf.keras.layers.Dense(output_size, activation="selu")
 
     def __call__(self, x):
         x = self.dense_1(x)
-        x = self.dropout(x)
         x = self.dense_2(x)
         x = self.dense_3(x)
         x = self.dense_4(x)
         x = self.dense_5(x)
         x = self.dense_6(x)
-        x = self.dropout(x)
         x = self.dense_7(x)
-        x = self.dropout(x)
         x = self.dense_8(x)
         return x
