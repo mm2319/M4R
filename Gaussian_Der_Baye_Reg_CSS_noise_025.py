@@ -113,7 +113,7 @@ para_two_compart_2 = best_optim_res
 
 Y_compart = []
 y_pred_1 = gp.predict_mean(
-              x_star=np.np.arange(0,10,0.1),  # set to test points
+              x_star=np.arange(0,10,0.1),  # set to test points
               X = np.array(T),     # set to observed x
               y = np.array(Y_tc[:,0]),       # set to observed y
               size=1,    # draw 100 posterior samples 
