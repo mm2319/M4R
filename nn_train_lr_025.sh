@@ -4,7 +4,7 @@
 #PBS -S /bin/bash
 
 # queue, parallel environment and number of processors
-#PBS -l select=1:ncpus=30:mem=10gb
+#PBS -l select=1:ncpus=40:mem=10gb
 
 #PBS -l walltime=72:00:00
 
