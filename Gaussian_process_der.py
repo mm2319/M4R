@@ -1,6 +1,5 @@
 # Gaussian Process
-import numpy as np
-import numpy
+import autograd.numpy as np
 class Kernel:
   def __init__(self):
     pass
