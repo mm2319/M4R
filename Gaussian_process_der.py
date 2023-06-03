@@ -49,7 +49,7 @@ class RBF_full_diff(Kernel):
     self.theta1, self.theta2 = theta
 
     ### TODO ###
-    k_mat = ((self.theta1**2)/(self.theta2**2))*np.exp((-np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0])))/(-2*self.theta2**2))) - ((self.theta1**2)/(2*self.theta2**4))*(np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0]))))*np.exp((-np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0])))/(-2*self.theta2**2)))
+    k_mat = ((self.theta1**2)/(self.theta2**2))*np.exp((-np.square(np.array([x]*(y.shape[0])).T + np.array([y]*(x.shape[0])))/(-2*self.theta2**2))) - ((self.theta1**2)/(2*self.theta2**4))*(np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0]))))*np.exp((-np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0])))/(-2*self.theta2**2)))
     ### END OF TODO ###
 
     return k_mat
