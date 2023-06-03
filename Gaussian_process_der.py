@@ -49,7 +49,7 @@ class RBF_full_diff(Kernel):
     self.theta1, self.theta2 = theta
 
     ### TODO ###
-    k_mat = ((self.theta1**2)/(self.theta2**2))*np.exp((-np.square(np.array([x]*(y.shape[0])).T + np.array([y]*(x.shape[0])))/(-2*self.theta2**2))) - ((self.theta1**2)/(2*self.theta2**4))*(np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0]))))*np.exp((-np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0])))/(-2*self.theta2**2)))
+    k_mat = ((self.theta1**2)/(self.theta2**2))*np.exp((-np.square(np.array([x]*(y.shape[0])).T + np.array([y]*(x.shape[0])))/(-2*self.theta2**2))) - ((self.theta1**2)/(self.theta2**4))*(np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0]))))*np.exp((-np.square(np.array([x]*(y.shape[0])).T - np.array([y]*(x.shape[0])))/(-2*self.theta2**2)))
     ### END OF TODO ###
 
     return k_mat
@@ -156,15 +156,6 @@ class GP_derivative:
     ### END OF TODO ###
 
     self.posterior_mean = posterior_mean
-    self.posterior_var = posterior_var
-  
-
-    ### TODO ###
-    # 3. draw posterior samples by using the posterior
-    # mean and covariance matrix
-    y_star = np.random.multivariate_normal(posterior_mean, posterior_var, size)
-    
-    ### END OF TODO ###
 
     return posterior_mean
 class GP:
