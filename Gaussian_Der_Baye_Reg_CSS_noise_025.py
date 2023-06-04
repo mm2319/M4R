@@ -90,12 +90,19 @@ def optim_hyperparams_multiple_runs(init_params_list, data_X, data_y, gp, maxite
     log_lik_history_list.append(log_lik)
 
   return optim_res_list, log_lik_history_list 
-
+def grid_search_initial():
+  init_params_list = []
+  init_params = [1.e-3,1.e-2,1.e-1,0,1,10,100]
+  for i in init_params:
+    for j in init_params:
+      for k in init_params:
+        init_params_list.append([i,j,k])
+  return np.array(init_params_list)
+init_params_list = grid_search_initial()
 gp = GP(kernel=rbf,kernel_diff=rbf_fd)
 T, Y_tc = create_data_twocompart(p=0.25)
 np.random.seed(0)
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_tc[:,0], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -103,7 +110,6 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_two_compart_1 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_tc[:,1], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -135,7 +141,7 @@ Y_compart = np.array(Y_compart).T
 
 # finds the hyperparameters for nonlinear
 T, Y_nl = create_data_nonlinear(p=0.25)
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_nl[:,0], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -143,7 +149,6 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_nonlinear_1 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_nl[:,1], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -175,7 +180,6 @@ Y_nonlinear = np.array(Y_nonlinear).T
 
 # finds the hyperparameters for lorenz
 T, Y_lr = create_data_lorenz(p=0.25)
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_lr[:,0], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -183,7 +187,6 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_lorenz_1 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_lr[:,1], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -191,7 +194,6 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_lorenz_2 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_lr[:,2], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -228,6 +230,13 @@ Y_lorenz.append(y_pred_1)
 Y_lorenz.append(y_pred_2)
 Y_lorenz.append(y_pred_3)
 Y_lorenz= np.array(Y_lorenz).T
+np.save('gp_025_para_tc_1',para_two_compart_1.x)
+np.save('gp_025_para_tc_2',para_two_compart_2.x)
+np.save('gp_025_para_nl_1',para_nonlinear_1.x)
+np.save('gp_025_para_nl_2',para_nonlinear_2.x)
+np.save('gp_025_para_lorenz_1',para_lorenz_1.x)
+np.save('gp_025_para_lorenz_2',para_lorenz_2.x)
+np.save('gp_025_para_lorenz_3',para_lorenz_3.x)
 print("$"*25)
 print("for the continuous spike and slab prior")
 print("$"*25)
