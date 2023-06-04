@@ -95,13 +95,14 @@ def optim_hyperparams_multiple_runs(init_params_list, data_X, data_y, gp, maxite
   return optim_res_list, log_lik_history_list 
 def grid_search_initial():
   init_params_list = []
-  init_params = [1.e-3,1.e-2,1.e-1,0,1,10,100]
+  init_params = [1.e-3,1.e-2,1.e-1,0.1,1,10,100]
   for i in init_params:
     for j in init_params:
       for k in init_params:
         init_params_list.append([i,j,k])
   return np.array(init_params_list)
 init_params_list = grid_search_initial()
+gp = GP(kernel=rbf,kernel_diff=rbf_fd)
 # finds the hyperparameters for two_compart
 T, Y_tc = create_data_twocompart(p=0.25)
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
