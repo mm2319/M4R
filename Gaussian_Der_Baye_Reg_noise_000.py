@@ -75,7 +75,7 @@ def optim_hyperparams_multiple_runs(init_params_list, data_X, data_y, gp, maxite
 
     # find best params
     optim_res = optim_hyperparams(
-        init_params, data_X, data_y, gp, method="CG", maxiter=maxiter,
+        init_params, data_X, data_y, gp, method="BFGS", maxiter=maxiter,
     )
     # log_lik_history = show_optim_history(optim_res.allvecs, gp, data_X, data_y)
     params = optim_res.x
@@ -96,7 +96,7 @@ def optim_hyperparams_multiple_runs(init_params_list, data_X, data_y, gp, maxite
 
 # finds the hyperparameters for two_compart
 T, Y_tc = create_data_twocompart(p=0.0)
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-10, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_tc[:,0], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -104,7 +104,7 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_two_compart_1 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-10, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_tc[:,1], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -136,7 +136,7 @@ Y_compart = np.array(Y_compart).T
 
 # finds the hyperparameters for nonlinear
 T, Y_nl = create_data_nonlinear(p=0.0)
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-10, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_nl[:,0], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -144,7 +144,7 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_nonlinear_1 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-10, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_nl[:,1], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -175,7 +175,7 @@ Y_nonlinear = np.array(Y_nonlinear).T
 
 # finds the hyperparameters for lorenz
 T, Y_lr = create_data_lorenz(p=0.0)
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-3, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_lr[:,0], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -183,7 +183,7 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_lorenz_1 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-3, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_lr[:,1], gp)
 best_idx = np.argmin(log_lik_history_list)
@@ -191,7 +191,7 @@ best_optim_res = optim_res_list[best_idx]
 best_log_lik = log_lik_history_list[best_idx]
 para_lorenz_2 = best_optim_res
 
-init_params_list = np.random.uniform(0.01, 10., (25, 3))
+init_params_list = np.random.uniform(1e-3, 1.e3, (100, 3))
 optim_res_list, log_lik_history_list  = optim_hyperparams_multiple_runs(
     init_params_list, T, Y_lr[:,2], gp)
 best_idx = np.argmin(log_lik_history_list)
