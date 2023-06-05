@@ -54,7 +54,7 @@ def obtain_twocompart_data(model, T):
             Y = tf.reshape(y, shape = (1,2)).numpy()
             N = Y[0][0]
             K = Y[0][1]
-            x = np.array([1., N, K,N*K, N**2, K**2,(N**2)/(K), K*(N**(2/3)), N**3, K**3, (N**2)*K,(K**2)*N, np.sin(N), np.cos(N)])
+            x = np.array([1., N, K,N*K, N**2, K**2,(N**2)/(K), K*(N**(2/3))])
             x_train.append(x)
             y_1_train.append(grad.numpy()[0])
             y_2_train.append(grad.numpy()[1])
