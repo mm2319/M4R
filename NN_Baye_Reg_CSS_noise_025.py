@@ -19,7 +19,7 @@ from Bayesian_Regression_Cont_Spike_and_Slab import Bayesian_regression_conti_sp
 from Bayesian_Regression_SS_Selection_2 import Bayesian_regression_SS_Selction
 import os
 os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 network_twocompart = FeedForwardNetwork(2)
 network_nonlinear = FeedForwardNetwork(2)
 network_lorenz = FeedForwardNetwork(3)

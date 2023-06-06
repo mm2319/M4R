@@ -6,7 +6,8 @@ from keras import layers
 from keras import backend as K
 from keras.optimizers import SGD, Adam
 import numpy as np
-
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 def loss_f(x, u):
     """
     this function measures the difference between true value of U(t) and ground-truth U (the size of cells)
