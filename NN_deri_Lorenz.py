@@ -64,5 +64,5 @@ def obtain_lorenz_data(model, T):
             x_train.append(x)
             y_1_train.append(grad.numpy()[0])
             y_2_train.append(grad.numpy()[1])
-            y_3_train.append(grad.numpy()[1])
+            y_3_train.append(grad.numpy()[2])
     return x_train, y_1_train, y_2_train, y_3_train
